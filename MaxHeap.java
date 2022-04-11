@@ -111,16 +111,17 @@ public final class MaxHeap<T extends Comparable<? super T>>
         } //end while
         lastIndex = 0;
     } //end clear
-    private int checkCapacity(int initialCapacity) {
+    private int checkCapacity(int initialCapacity) { //this is not given so idk if i did it right
         return heap.length;
-    }
-    private void checkInitialization() {
+    } //end checkCapacity
+    private void checkInitialization() { //this is not given so idk if i did it right
         if (!initialized)
             throw new SecurityException
                     ("ArrayBag object is not initialized "
                             + "properly.");
-    }
-    private int ensureCapacity() {
+    } //end checkInitialization
+    private int ensureCapacity() { //this is not given so idk if i did it right
         return DEFAULT_CAPACITY;
-    }
-}
+    } //end ensureCapacity
+} //end MaxHeap.java
+
