@@ -139,22 +139,28 @@ public final class MaxHeap<T extends Comparable<? super T>>
         
     } // end of clear
     
-    private int checkCapacity(int initialCapacity) 
+    private void checkCapacity(int initialCapacity)
     {
-        return heap.length;
-    } // end checkCapacity
-    
-    private void checkInitialization() 
-    { //this is not given so idk if i did it right
+        if (initialCapacity > MAX_CAPACITY)
+        {
+            throw new IllegalStateException("Attempted to create an array "
+                    + "which exceeds the allowed maximum capacity of "
+                    + MAX_CAPACITY + "...");
+        }
+    } // end of checkCapacity
+
+    private void checkInitialization()
+    {
+        // check to see if MaxHeap object is initialized.
         if (!initialized)
-            throw new SecurityException
-                    ("ArrayBag object is not initialized "
-                            + "properly.");
+            throw new SecurityException("MaxHeap object is corrupted...");
     } // end of checkInitialization
-    
-    private int ensureCapacity() 
-    { //this is not given so idk if i did it right
-        return DEFAULT_CAPACITY;
+
+    private void ensureCapacity()
+    {
+        // check to see if the number of entries in the heap
+        // array has exceeded the maximum capacity.
+        checkCapacity(lastIndex);
     } // end of ensureCapacity
     
 } // end of "MaxHeap.java"
