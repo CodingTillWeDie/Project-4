@@ -10,17 +10,39 @@ public class HeapDriver
 
         do {
             // ask if the user wants to read a sequence of integers from an input file.
-            System.out.println("Would you like to read a sequence of integers from an input file? (Y/N)");
+            System.out.println("Would you like to read a sequence of integers from input files? (Y/N)");
             userResponse = keyboard.next().charAt(0);
             userResponse = Character.toUpperCase(userResponse);
 
             if ('Y' == userResponse)
             {
-                // try to read a sequence of integers from "data.txt".
+                // try to read a sequence of integers from "data_sorted.txt".
                 int index = 0;
-                String givenFile = "data.txt";
+                String givenFile = "data_sorted.txt";
                 File myFile = new File(givenFile);
                 int[] intArray = new int[100];
+
+                // first, check to see if the given file exists.
+                if (myFile.exists())
+                {
+                    Scanner inputFile = new Scanner(myFile);
+
+                    // if the file exists, read a sequence of integers from the given file.
+                    System.out.println("Reading a sequence of integers from " + givenFile + "...");
+                    while (inputFile.hasNext())
+                    {
+                        intArray[index] = inputFile.nextInt();
+                        index++;
+                    }
+                    // when reading the given file is finished, close the file.
+                    inputFile.close();
+                }
+
+                // try to read a sequence of integers from "data_random.txt".
+                index = 0;
+                givenFile = "data_random.txt";
+                myFile = new File(givenFile);
+                intArray = new int[100];
 
                 // first, check to see if the given file exists.
                 if (myFile.exists())
