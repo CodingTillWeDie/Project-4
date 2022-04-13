@@ -22,7 +22,6 @@ public class HeapDriver
                 File myFile = new File(givenFile);
                 int[] intArray = new int[100];
 
-
                 // first, check to see if the given file exists.
                 if (myFile.exists())
                 {
@@ -33,6 +32,7 @@ public class HeapDriver
                     while (inputFile.hasNext())
                     {
                         intArray[index] = inputFile.nextInt();
+                        index++;
                     }
                     // when reading the given file is finished, close the file.
                     inputFile.close();
@@ -45,6 +45,7 @@ public class HeapDriver
 
                 // perform heap operations and write the results into an output file.
                 performHeapOperations(intArray);
+                break;
 
             }
             else if ('N' == userResponse)
@@ -68,13 +69,17 @@ public class HeapDriver
         PrintWriter outputFile = new PrintWriter(fwriter);
 
         // create a max-heap using the sequential insertions.
-        MaxHeap<Integer> sequentialHeap = new MaxHeap<>();
+        MaxHeap sequentialHeap = new MaxHeap(array.length);
+        for (; index < array.length; index++)
+        {
+            sequentialHeap.add(array[index]);
+        }
 
         // output the first 10 integers of the array into the output file.
         outputFile.print("Heap built using sequential insertions: ");
-        for (; index < 10; index++)
+        for (index = 0; index < 10; index++)
         {
-            outputFile.print(array[index] + ",");
+            outputFile.print(sequentialHeap.getHeap()[index + 1] + ",");
         }
         System.out.println("...");
 
@@ -89,20 +94,20 @@ public class HeapDriver
 
         // output the first 10 integers of the resulting array into the output file.
         outputFile.print("Heap after 10 removals: ");
-        for (int i = 0; i < 10; i++)
+        for (index = 0; index < 10; index++)
         {
-            outputFile.print(array[i] + ",");
+            outputFile.print(sequentialHeap.getHeap()[index + 1] + ",");
         }
         System.out.println("...\n");
 
         // create a max-heap using the optimal method.
-        MaxHeap<Integer> optimalHeap = new MaxHeap<>();
+        MaxHeap optimalHeap = new MaxHeap(array);
 
         // output the first 10 integers of the array into the output file.
         outputFile.print("Heap built using optimal method: ");
-        for (int i = 0; i < 10; i++)
+        for (index = 0; index < 10; index++)
         {
-            outputFile.print(array[i] + ",");
+            outputFile.print(optimalHeap.getHeap()[index + 1] + ",");
         }
         System.out.println("...");
 
@@ -117,11 +122,14 @@ public class HeapDriver
 
         // output the first 10 integers of the resulting array into the output file.
         outputFile.print("Heap after 10 removals: ");
-        for (int i = 0; i < 10; i++)
+        for (index = 0; index < 10; index++)
         {
-            outputFile.print(array[i] + ",");
+            outputFile.print(sequentialHeap.getHeap()[index + 1] + ",");
         }
         System.out.println("...");
+
+        // close the output file.
+        outputFile.close();
 
     } // end of "performHeapOperations"
 
