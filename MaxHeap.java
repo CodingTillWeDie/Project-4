@@ -3,7 +3,7 @@ public final class MaxHeap implements MaxHeapInterface
     private int[] heap; // Array of heap entries
     private int lastIndex; // Index of last entry
     private boolean initialized = false;
-    private static int numSwaps = 0;
+    private int numSwaps = 0;
     private static final int DEFAULT_CAPACITY = 25;
     private static final int MAX_CAPACITY = 10000;
 
@@ -28,6 +28,7 @@ public final class MaxHeap implements MaxHeapInterface
     public MaxHeap(int[] entries)
     {
         this(entries.length); // call the other type constructor.
+        lastIndex = entries.length;
         assert initialized = true;
 
         // copy given array to data field.
@@ -62,12 +63,14 @@ public final class MaxHeap implements MaxHeapInterface
             if (orphan < heap[largerChildIndex])
             {
                 heap[rootIndex] = heap[largerChildIndex];
+                // increment the number of swaps.
                 numSwaps++;
                 rootIndex = largerChildIndex;
                 leftChildIndex = 2 * rootIndex;
             }
             else
                 done = true;
+
         } // end while
 
         heap[rootIndex] = orphan;
