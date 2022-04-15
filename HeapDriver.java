@@ -37,6 +37,9 @@ public class HeapDriver
                     // when reading the given file is finished, close the file.
                     inputFile.close();
                 }
+                // perform heap operations on sorted data
+                // and write the results into an output file.
+                performHeapOperations(intArray);
 
                 // try to read a sequence of integers from "data_random.txt".
                 index = 0;
@@ -47,25 +50,21 @@ public class HeapDriver
                 // first, check to see if the given file exists.
                 if (myFile.exists())
                 {
-                    Scanner inputFile = new Scanner(myFile);
+                    Scanner inputFile2 = new Scanner(myFile);
 
                     // if the file exists, read a sequence of integers from the given file.
                     System.out.println("Reading a sequence of integers from " + givenFile + "...");
-                    while (inputFile.hasNext())
+                    while (inputFile2.hasNext())
                     {
-                        intArray[index] = inputFile.nextInt();
+                        intArray[index] = inputFile2.nextInt();
                         index++;
                     }
                     // when reading the given file is finished, close the file.
-                    inputFile.close();
-                }
-                else
-                {
-                    System.out.println("Failed to open " + givenFile + "...");
-                    break;
+                    inputFile2.close();
                 }
 
-                // perform heap operations and write the results into an output file.
+                // perform heap operations on random data
+                // and write the results into an output file.
                 performHeapOperations(intArray);
                 break;
 
@@ -96,6 +95,7 @@ public class HeapDriver
         {
             sequentialHeap.add(array[index]);
         }
+        sequentialHeap.reheap(1);
 
         // output the first 10 integers of the array into the output file.
         outputFile.print("Heap built using sequential insertions: ");
@@ -103,7 +103,7 @@ public class HeapDriver
         {
             outputFile.print(sequentialHeap.getHeap()[index + 1] + ",");
         }
-        System.out.println("...");
+        outputFile.println("...");
 
         // output the number of swaps performed into the output file.
         outputFile.println("Number of swaps in the heap creation: " + sequentialHeap.getNumSwaps());
@@ -120,7 +120,7 @@ public class HeapDriver
         {
             outputFile.print(sequentialHeap.getHeap()[index + 1] + ",");
         }
-        System.out.println("...\n");
+        outputFile.println("...\n");
 
         // create a max-heap using the optimal method.
         MaxHeap optimalHeap = new MaxHeap(array);
@@ -131,7 +131,7 @@ public class HeapDriver
         {
             outputFile.print(optimalHeap.getHeap()[index + 1] + ",");
         }
-        System.out.println("...");
+        outputFile.println("...");
 
         // output the number of swaps performed into the output file.
         outputFile.println("Number of swaps in the heap creation: " + optimalHeap.getNumSwaps());
@@ -148,7 +148,7 @@ public class HeapDriver
         {
             outputFile.print(sequentialHeap.getHeap()[index + 1] + ",");
         }
-        System.out.println("...");
+        outputFile.println("...\n");
 
         // close the output file.
         outputFile.close();
