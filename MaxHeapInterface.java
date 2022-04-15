@@ -1,9 +1,11 @@
-public interface MaxHeapInterface<T extends Comparable<? super T>>
+public interface MaxHeapInterface
 {
-    public void add(T newEntry);
-    public T removeMax();
-    public T getMax();
+    public void add(int newEntry);
+    public int removeMax();
+    public int getMax();
     public boolean isEmpty();
     public int getSize();
     public void clear();
-} //end MaxHeapInterface
+    public int[] getHeap();
+
+} // end of "MaxHeapInterface"
