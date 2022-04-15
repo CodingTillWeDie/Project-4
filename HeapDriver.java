@@ -50,17 +50,17 @@ public class HeapDriver
                 // first, check to see if the given file exists.
                 if (myFile.exists())
                 {
-                    Scanner inputFile2 = new Scanner(myFile);
+                    Scanner inputFile = new Scanner(myFile);
 
                     // if the file exists, read a sequence of integers from the given file.
                     System.out.println("Reading a sequence of integers from " + givenFile + "...");
-                    while (inputFile2.hasNext())
+                    while (inputFile.hasNext())
                     {
-                        intArray[index] = inputFile2.nextInt();
+                        intArray[index] = inputFile.nextInt();
                         index++;
                     }
                     // when reading the given file is finished, close the file.
-                    inputFile2.close();
+                    inputFile.close();
                 }
 
                 // perform heap operations on random data
@@ -146,7 +146,7 @@ public class HeapDriver
         outputFile.print("Heap after 10 removals: ");
         for (index = 0; index < 10; index++)
         {
-            outputFile.print(sequentialHeap.getHeap()[index + 1] + ",");
+            outputFile.print(optimalHeap.getHeap()[index + 1] + ",");
         }
         outputFile.println("...\n");
 
