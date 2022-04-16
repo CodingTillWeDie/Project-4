@@ -1,8 +1,12 @@
 import java.util.Scanner;
 import java.io.*;
 
+/** Driver class to create the heaps, preform the operations, and push the results to the output file. */
 public class HeapDriver
 {
+    /** Main Method to run the program and test the
+     * preformHeapOperations method.
+     @throws IOException if the file "myFile" does not exist */
     public static void main(String[] args) throws IOException
     {
         char userResponse;
@@ -82,6 +86,8 @@ public class HeapDriver
 
     } // end of "main"
 
+    /** Preforms heap operations using the given data sets
+     * and prints the results in the output file. */
     private static void performHeapOperations(int[] array) throws IOException
     {
         int index = 0;
