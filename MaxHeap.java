@@ -1,3 +1,4 @@
+/** Class to create max heaps using both the sequential and optimal methods. */
 public final class MaxHeap implements MaxHeapInterface
 {
     private int[] heap; // Array of heap entries
@@ -44,6 +45,8 @@ public final class MaxHeap implements MaxHeapInterface
         }
     } // end of type constructor #2
 
+    /** The smart way of creating a heap
+     @param rootIndex  The index of the root. */
     public void reheap(int rootIndex)
     {
         boolean done = false;
