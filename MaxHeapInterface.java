@@ -28,4 +28,7 @@ public interface MaxHeapInterface
      @return  The array of ints heap. */
     public int[] getHeap();
 
+    /** Gets the number of swaps done in heap creation.
+     @return  The number of swaps. */
+    public int getNumSwaps();
 } // end of "MaxHeapInterface"
